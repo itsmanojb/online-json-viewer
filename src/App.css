@@ -1,0 +1,142 @@
+:root {
+  --header-height: 36px;
+  --toolbox-height: 40px;
+  --color: #666;
+  --color-dark: #222;
+  --line-color: #ddd;
+  --app-color: #3f8cff;
+  --gray-color: #f6f6f6;
+  --light-gray-color: #fafafa;
+  --serif-font: 'Open Sans', sans-serif;
+  --mono-font: 'Anonymous Pro', monospace;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+  font-family: var(--serif-font);
+}
+
+pre {
+  font-family: var(--mono-font);
+}
+
+.app {
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
+
+header {
+  background-color: var(--light-gray-color);
+  padding: 0 10px;
+  height: var(--header-height);
+  display: flex;
+  align-items: flex-end;
+  border-bottom: 1px solid var(--line-color);
+}
+
+.tabs {
+  display: flex;
+  margin-bottom: -1px;
+  z-index: 1;
+}
+
+.tab {
+  padding: 8px 16px;
+  font-size: 12px;
+  border: 1px solid var(--line-color);
+  cursor: pointer;
+  border-radius: 4px 4px 0 0;
+  line-height: 1;
+  color: var(--color);
+  transition: color 0.2s ease-in;
+}
+
+.tab:hover {
+  color: var(--color-dark);
+  background-color: #fdfdfd;
+}
+
+.tab.active {
+  border-bottom-color: #fff;
+  background-color: #fff;
+}
+
+.tab + .tab {
+  margin-inline-start: 3px;
+}
+
+section {
+  display: grid;
+  height: calc(100vh - var(--header-height));
+  grid-template-rows: var(--toolbox-height) 1fr;
+}
+
+.toolbox {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  border-top: 1px solid var(--line-color);
+  margin-top: 2px;
+  padding: 0 5px;
+}
+
+.menus {
+  display: flex;
+  height: 100%;
+  align-items: center;
+}
+
+.menu {
+  padding: 6px 10px;
+  display: flex;
+  align-items: center;
+  font-size: 12px;
+  line-height: 1;
+  color: var(--color);
+  cursor: pointer;
+  transition: all 0.2s ease-in;
+  border-radius: 3px;
+}
+
+.menu.disabled {
+  pointer-events: none;
+  opacity: 0.3;
+}
+
+.menu:hover {
+  color: var(--color-dark);
+  background-color: var(--light-gray-color);
+}
+
+.divider {
+  background-color: var(--line-color);
+  width: 1px;
+  height: 16px;
+  margin: 0 5px;
+}
+
+textarea {
+  margin: 0 2px 2px;
+  border-radius: 10px;
+  resize: none;
+  border: 1px solid var(--line-color);
+  box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease-in;
+  background-color: var(--gray-color);
+  font-family: var(--mono-font);
+  padding: 5px;
+  font-weight: 500;
+}
+
+textarea:focus {
+  box-shadow: inset 0 0 5px rgba(63, 140, 255, 0.35);
+  outline: none;
+  border-color: var(--app-color);
+}
