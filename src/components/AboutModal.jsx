@@ -10,19 +10,6 @@ const AboutModal = ({ onModalClose }) => {
     onModalClose();
   }
 
-  const dummyJson = {
-    name: 'John Doe',
-    age: 32,
-    address: {
-      street: '21 2nd Street',
-      city: 'New York, NY',
-    },
-    phoneNumbers: [
-      { type: 'home', number: '212 555-1234' },
-      { type: 'fax', number: '646 555-4567' },
-    ],
-  };
-
   return (
     <div className={style.modal_ui}>
       <div className={style.modal_wrapper}>
@@ -39,13 +26,6 @@ const AboutModal = ({ onModalClose }) => {
                 className={`tab ${tab === 'about' ? 'active' : ''}`}
               >
                 About JSON
-              </div>
-              <div
-                role="tab"
-                onClick={() => setTab('exm')}
-                className={`tab ${tab === 'exm' ? 'active' : ''}`}
-              >
-                Example
               </div>
               <div
                 role="tab"
@@ -103,7 +83,6 @@ const AboutModal = ({ onModalClose }) => {
                 </p>
               </div>
             )}
-            {tab === 'exm' && <pre>{JSON.stringify(dummyJson, null, 4)}</pre>}
             {tab === 'app' && (
               <div>
                 <p>
