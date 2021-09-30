@@ -4,7 +4,10 @@
   --color: #666;
   --color-dark: #222;
   --line-color: #ddd;
-  --app-color: #3f8cff;
+  --app-color: #a12568;
+  --app-color-light: #af2f73;
+  --app-color-dark: #3b185f;
+  --app-color-tint: #fec260;
   --gray-color: #f6f6f6;
   --light-gray-color: #fafafa;
   --serif-font: 'Open Sans', sans-serif;
@@ -28,13 +31,22 @@ pre {
 
 .app {
   height: 100vh;
-  width: 100vw;
   overflow: hidden;
 }
 
+main {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+}
+
+aside {
+  border-inline-end: 1px solid var(--line-color);
+  /* background-color: var(--light-gray-color); */
+}
+
 header {
-  background-color: #454545;
-  padding: 0 10px;
+  /* background-color: var(--app-color-light); */
+  padding: 0 4px;
   height: var(--header-height);
   display: flex;
   align-items: flex-end;
@@ -48,25 +60,25 @@ header {
 }
 
 .tab {
-  padding: 8px 16px;
+  padding: 9px 20px;
   font-size: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  border: 1px solid var(--line-color);
   cursor: pointer;
   border-radius: 4px 4px 0 0;
   line-height: 1;
-  color: #eee;
-  transition: all 0.2s ease-in;
-  background-color: rgba(255, 255, 255, 0.15);
+  color: #888;
+  opacity: 0.85;
 }
 
 .tab:hover {
-  background-color: rgba(255, 255, 255, 0.3);
+  opacity: 1;
 }
 
 .tab.active {
-  color: var(--color-dark);
+  color: var(--app-color);
   border-bottom-color: #fff;
   background-color: #fff;
+  opacity: 1;
 }
 
 .tab + .tab {
@@ -83,8 +95,8 @@ section {
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
-  border-top: 1px solid var(--line-color);
-  margin-top: 2px;
+  border-top: 1px solid var(--gray-color);
+  margin-top: 3px;
   padding: 0 5px;
 }
 
@@ -125,7 +137,7 @@ section {
 }
 
 .wrapper {
-  margin: 0 2px 2px;
+  margin: 0 4px 4px;
   border-radius: 10px;
   border: 1px solid var(--line-color);
   box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.1);
@@ -141,7 +153,7 @@ section {
 }
 
 textarea {
-  margin: 0 2px 2px;
+  margin: 0 4px 4px;
   border-radius: 10px;
   resize: none;
   border: 1px solid var(--line-color);
@@ -149,7 +161,7 @@ textarea {
   transition: all 0.2s ease-in;
   background-color: var(--gray-color);
   font-family: var(--mono-font);
-  padding: 5px;
+  padding: 10px;
   font-weight: 500;
   overflow: -moz-scrollbars-none;
   -ms-overflow-style: none;
@@ -157,8 +169,17 @@ textarea {
 
 textarea:focus {
   box-shadow: inset 0 0 5px rgba(63, 140, 255, 0.35);
+  border-color: #3f8cff;
   outline: none;
-  border-color: var(--app-color);
+}
+
+textarea[readonly] {
+  box-shadow: none;
+}
+
+textarea[readonly]:focus {
+  box-shadow: none;
+  border-color: var(--line-color);
 }
 
 textarea.invalid {
@@ -166,9 +187,7 @@ textarea.invalid {
   box-shadow: inset 0 0 3px rgb(255 129 0 / 45%);
 }
 
-.wrapper::-webkit-scrollbar {
-  width: 0 !important;
-}
+.wrapper::-webkit-scrollbar,
 textarea::-webkit-scrollbar {
   width: 0 !important;
 }
