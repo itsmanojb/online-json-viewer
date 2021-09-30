@@ -1,0 +1,23 @@
+.menuInput {
+  padding: 6px 10px;
+  font-size: 12px;
+  line-height: 1;
+  color: var(--color);
+  transition: all 0.2s ease-in;
+  border-radius: 3px;
+  margin-inline-end: 5px;
+}
+
+.menuInput label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.menuInput label span {
+  margin-inline-start: 4px;
+}
+
+.menuInput input {
+  accent-color: var(--app-color);
+}

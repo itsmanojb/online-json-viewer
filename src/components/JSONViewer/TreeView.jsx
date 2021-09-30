@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import ReactJson from 'react-json-view';
-import style from './components.module.css';
+import style from './viewer.module.css';
 
 const TreeView = ({ jsonInput, showModal }) => {
   const initial = {
