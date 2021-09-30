@@ -33,7 +33,7 @@ pre {
 }
 
 header {
-  background-color: var(--light-gray-color);
+  background-color: #454545;
   padding: 0 10px;
   height: var(--header-height);
   display: flex;
@@ -50,20 +50,21 @@ header {
 .tab {
   padding: 8px 16px;
   font-size: 12px;
-  border: 1px solid var(--line-color);
+  border: 1px solid rgba(255, 255, 255, 0.15);
   cursor: pointer;
   border-radius: 4px 4px 0 0;
   line-height: 1;
-  color: var(--color);
-  transition: color 0.2s ease-in;
+  color: #eee;
+  transition: all 0.2s ease-in;
+  background-color: rgba(255, 255, 255, 0.15);
 }
 
 .tab:hover {
-  color: var(--color-dark);
-  background-color: #fdfdfd;
+  background-color: rgba(255, 255, 255, 0.3);
 }
 
 .tab.active {
+  color: var(--color-dark);
   border-bottom-color: #fff;
   background-color: #fff;
 }

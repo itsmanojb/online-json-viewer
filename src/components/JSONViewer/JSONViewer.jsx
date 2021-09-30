@@ -31,12 +31,14 @@ const JSONViewer = () => {
       try {
         JSON.parse(value);
         setInvalidJson(false);
+        return false;
       } catch (e) {
         setInvalidJson(true);
+        return true;
       }
-    } else {
-      setInvalidJson(false);
     }
+    setInvalidJson(false);
+    return true;
   }
 
   const pasteData = async () => {
@@ -58,17 +60,16 @@ const JSONViewer = () => {
   };
 
   const handleInputChange = (value) => {
-    const v = value.trim();
-    isInvalidJSON(v);
-    setJsonInput(v);
+    setJsonInput(value);
+    setInvalidJson(isInvalidJSON(value));
   };
 
   const handleCopyClick = () => {
     copyTextToClipboard(jsonInput)
       .then(() => {
         addToast({
-          title: 'Copied!',
-          description: 'JSON has been copied to clipboard!',
+          title: 'Done!',
+          description: 'Copied to clipboard!',
           type: 'success',
         });
       })
@@ -86,11 +87,27 @@ const JSONViewer = () => {
   }
 
   const clearWhiteSpace = () => {
+    if (isInvalidJSON(jsonInput)) {
+      addToast({
+        title: 'Failed!',
+        description: 'Invalid JSON provided!',
+        type: 'error',
+      });
+      return;
+    }
     const cleared = JSON.stringify(JSON.parse(jsonInput));
     setJsonInput(cleared);
   };
 
   const formatJSON = () => {
+    if (isInvalidJSON(jsonInput)) {
+      addToast({
+        title: 'Failed!',
+        description: 'Invalid JSON provided!',
+        type: 'error',
+      });
+      return;
+    }
     const formatted = JSON.stringify(JSON.parse(jsonInput), null, 2);
     setJsonInput(formatted);
   };
@@ -112,6 +129,7 @@ const JSONViewer = () => {
         type: 'success',
       });
       setJsonInput(JSON.stringify(data, null, 2));
+      setInvalidJson(false);
     }
     setRemote(false);
   }
@@ -122,7 +140,7 @@ const JSONViewer = () => {
         <div className="tabs" role="tablist">
           <div
             className={`tab ${treeView && 'active'} ${
-              invalidJson && 'disabled'
+              (jsonInput.length === 0 || invalidJson) && 'disabled'
             }`}
             role="tab"
             onClick={() => toggleTreeView()}

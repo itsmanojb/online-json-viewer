@@ -2,7 +2,7 @@
   position: fixed;
   inset: 0;
   z-index: 99;
-  background-color: rgba(25, 25, 25, 0.25);
+  background-color: rgba(5, 5, 5, 0.75);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -19,14 +19,15 @@
   background-color: #fff;
   border-radius: 5px;
   overflow: hidden;
-  box-shadow: 0 0 15px rgba(25, 25, 25, 0.25);
+  box-shadow: 0 0 15px rgba(25, 25, 25, 0.5);
   /* border: 1px solid var(--line-color); */
+  overflow: hidden;
 }
 
 .modal_header {
   border-bottom: 1px solid var(--line-color);
   padding: 5px 10px 0;
-  background-color: var(--light-gray-color);
+  background-color: #555;
   position: relative;
 }
 
@@ -41,12 +42,13 @@
   top: 6px;
   line-height: 1;
   font-size: 20px;
-  color: var(--color);
-  background-color: #eee;
+  color: #fff;
+  background-color: #6669;
 }
 
 .modal_title {
   padding: 8px 0;
+  color: #fff;
 }
 
 .modal_body {
