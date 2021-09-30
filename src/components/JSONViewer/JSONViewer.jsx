@@ -2,6 +2,7 @@ import { useState } from 'react';
 import useToastContext from '../Toast/useToastContext';
 import AboutModal from '../AboutModal';
 import TreeView from './TreeView';
+import RemoteDataInput from './RemoteDataInput';
 
 const JSONViewer = () => {
   const addToast = useToastContext();
@@ -9,6 +10,7 @@ const JSONViewer = () => {
   const [jsonInput, setJsonInput] = useState('');
   const [invalidJson, setInvalidJson] = useState(false);
   const [treeView, setTreeView] = useState(false);
+  const [remote, setRemote] = useState(false);
   const [modal, setModal] = useState(false);
 
   const toggleTreeView = () => {
@@ -94,6 +96,26 @@ const JSONViewer = () => {
   };
 
   const clearJson = () => setJsonInput('');
+
+  function handleRemoteData(data, isError) {
+    if (isError) {
+      addToast({
+        title: 'Error!',
+        description:
+          'Failed to load remote data. Check developer console to know more.',
+        type: 'error',
+      });
+    } else {
+      addToast({
+        title: 'Success!',
+        description: 'Remote JSON data has been loaded!',
+        type: 'success',
+      });
+      setJsonInput(JSON.stringify(data, null, 2));
+    }
+    setRemote(false);
+  }
+
   return (
     <div className="app">
       <header>
@@ -163,7 +185,11 @@ const JSONViewer = () => {
               </div>
 
               <div className="divider"></div>
-              <div className="menu" role="button">
+              <div
+                className="menu"
+                role="button"
+                onClick={() => setRemote(true)}
+              >
                 Load Remote Data
               </div>
             </div>
@@ -184,6 +210,13 @@ const JSONViewer = () => {
             className={`${invalidJson && 'invalid'}`}
           ></textarea>
         </section>
+      )}
+      {remote && (
+        <RemoteDataInput
+          onError={() => handleRemoteData(null, true)}
+          onDataLoad={(e) => handleRemoteData(e, false)}
+          onCancel={() => setRemote(false)}
+        />
       )}
       {modal && <AboutModal onModalClose={() => setModal(false)} />}
     </div>
