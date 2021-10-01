@@ -15,7 +15,7 @@
 }
 
 .modal_content {
-  height: 480px;
+  min-height: 480px;
   background-color: #fff;
   border-radius: 5px;
   overflow: hidden;

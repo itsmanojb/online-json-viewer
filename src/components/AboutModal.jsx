@@ -98,13 +98,26 @@ const AboutModal = ({ onModalClose }) => {
                   .
                 </p>
                 <p>
+                  This application is just like{' '}
+                  <a
+                    href="http://jsonviewer.stack.hu"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    jsonviewer.stack.hu
+                  </a>{' '}
+                  with some tweak in the UI and with additional support for
+                  pasting JSON and loading data over https connection.
+                </p>
+                <br />
+                <p>
                   Author:{' '}
                   <a
                     href="https://manojbarman.in"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    Manoj Barman
+                    Manoj B
                   </a>{' '}
                 </p>
               </div>

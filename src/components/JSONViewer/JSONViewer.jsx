@@ -139,6 +139,13 @@ const JSONViewer = () => {
       <header>
         <div className="tabs" role="tablist">
           <div
+            className={`tab ${!treeView && 'active'}`}
+            role="tab"
+            onClick={() => setTreeView(false)}
+          >
+            JSON Editor
+          </div>
+          <div
             className={`tab ${treeView && 'active'} ${
               (jsonInput.length === 0 || invalidJson) && 'disabled'
             }`}
@@ -146,13 +153,6 @@ const JSONViewer = () => {
             onClick={() => toggleTreeView()}
           >
             Viewer
-          </div>
-          <div
-            className={`tab ${!treeView && 'active'}`}
-            role="tab"
-            onClick={() => setTreeView(false)}
-          >
-            Text
           </div>
         </div>
       </header>
@@ -226,6 +226,7 @@ const JSONViewer = () => {
             onChange={(e) => handleInputChange(e.target.value)}
             spellCheck="false"
             className={`${invalidJson && 'invalid'}`}
+            placeholder="Type (or Paste) here"
           ></textarea>
         </section>
       )}

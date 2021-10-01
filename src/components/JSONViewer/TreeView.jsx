@@ -39,7 +39,7 @@ const TreeView = ({ jsonInput, showModal }) => {
   function toggleDarkMode(enable) {
     if (!enable) {
       setDark(true);
-      setTheme('monokai');
+      setTheme('solarized');
     } else {
       setDark(false);
       setTheme(initial.theme);
