@@ -104,17 +104,19 @@ const TreeView = ({ jsonInput }) => {
         </div>
       </div>
       <div className="flex-1 overflow-auto p-2">
-        <ReactJson
-          src={JSON.parse(jsonInput)}
-          iconStyle="square"
-          enableClipboard={true}
-          displayObjectSize={showSize}
-          displayDataTypes={showType}
-          groupArraysAfterLength={arrayGroupLength}
-          collapseStringsAfterLength={truncateAfter}
-          indentWidth={indent}
-          theme={initial.theme}
-        />
+        {jsonInput && (
+          <ReactJson
+            src={JSON.parse(jsonInput)}
+            iconStyle="square"
+            enableClipboard={true}
+            displayObjectSize={showSize}
+            displayDataTypes={showType}
+            groupArraysAfterLength={arrayGroupLength}
+            collapseStringsAfterLength={truncateAfter}
+            indentWidth={indent}
+            theme={initial.theme}
+          />
+        )}
       </div>
     </div>
   );
