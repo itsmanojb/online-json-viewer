@@ -1,31 +1,30 @@
-import style from './components.module.css';
-
 const AllToolList = ({ selected, onToolChange }) => {
+  const style = {};
   const tools = [
     {
       id: 1,
-      name: 'JSON Viewer',
-      code: 'json',
+      name: "JSON Viewer",
+      code: "json",
     },
     {
       id: 2,
-      name: 'URL Encoder',
-      code: 'url-e',
+      name: "URL Encoder",
+      code: "url-e",
     },
     {
       id: 3,
-      name: 'URL Decoder',
-      code: 'url-d',
+      name: "URL Decoder",
+      code: "url-d",
     },
     {
       id: 4,
-      name: 'Base64 Encoder',
-      code: 'base64-e',
+      name: "Base64 Encoder",
+      code: "base64-e",
     },
     {
       id: 5,
-      name: 'Base64 Decoder',
-      code: 'base64-d',
+      name: "Base64 Decoder",
+      code: "base64-d",
     },
   ];
   return (

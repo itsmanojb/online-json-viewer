@@ -1,16 +1,43 @@
-import { ToastContextProvider } from './components/Toast/ToastContext';
-import JSONViewer from './components/JSONViewer/JSONViewer';
-import './App.css';
+import { Toaster } from "react-hot-toast";
+import {
+  createBrowserRouter,
+  Navigate,
+  RouterProvider,
+} from "react-router-dom";
+import JSONViewer from "./components/JSONViewer/JSONViewer";
+import XML2JSONConverter from "./components/XML2JSON/XML2JSONConverter";
+import AppShell from "./components/AppShell";
+import ErrorBoundary from "./components/ErrorBoundary";
+import { AppContextProvider } from "./AppContext";
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <AppShell />,
+    children: [
+      {
+        path: "",
+        element: <Navigate to={"/viewer-editor"} />,
+      },
+      {
+        path: "viewer-editor",
+        element: <JSONViewer />,
+      },
+      {
+        path: "xml-json",
+        element: <XML2JSONConverter />,
+      },
+    ],
+    errorElement: <ErrorBoundary />,
+  },
+]);
 
 function App() {
   return (
-    <ToastContextProvider>
-      <main>
-        <section>
-          <JSONViewer />
-        </section>
-      </main>
-    </ToastContextProvider>
+    <AppContextProvider>
+      <RouterProvider router={router} />
+      <Toaster position="center-bottom" />
+    </AppContextProvider>
   );
 }
 
