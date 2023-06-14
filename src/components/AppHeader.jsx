@@ -7,12 +7,18 @@ export default function AppHeader() {
   const links = [
     {
       id: 1,
-      label: "JSON Viewer",
+      label: "Viewer",
       to: "viewer-editor",
       disabled: false,
     },
     {
       id: 2,
+      label: "Compare",
+      to: "json-compare",
+      disabled: true,
+    },
+    {
+      id: 3,
       label: "XML to JSON",
       to: "xml-json",
       disabled: true,
