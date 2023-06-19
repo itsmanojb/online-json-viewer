@@ -5,6 +5,7 @@ import { toast } from "react-hot-toast";
 
 export default function InputJSON() {
   const {
+    indent,
     jsonInput,
     invalidInput,
     setInputJson,
@@ -30,6 +31,11 @@ export default function InputJSON() {
     setInputJson(value);
   };
 
+  const parseJson = () => {
+    const formatted = JSON.stringify(JSON.parse(jsonInput), null, +indent);
+    setOutputJson(formatted);
+  };
+
   const clearJson = () => {
     setInputJson("");
     setOutputJson("");
@@ -39,6 +45,16 @@ export default function InputJSON() {
     <>
       <div className="bg-neutral-100 sticky top-0 border-b border-neutral-200">
         <div className="flex items-center divide-x divide-neutral-300">
+          {jsonInput && !invalidInput && (
+            <button
+              type="button"
+              onClick={() => parseJson()}
+              className="flex items-center gap-1 text-sm py-2 px-4 _btn"
+              title="Convert JSON"
+            >
+              <span>Convert</span>
+            </button>
+          )}
           <button
             type="button"
             onClick={() => pasteData()}
