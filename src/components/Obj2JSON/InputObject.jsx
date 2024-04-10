@@ -1,20 +1,18 @@
 import React from "react";
 import { toast } from "react-hot-toast";
 import { classNames } from "../../utils/helper";
-import useAppContext from "../../hooks/useAppContext";
-import useJsonViewer from "../../hooks/useJsonViewer";
+import useObjectConverter from "../../hooks/useObjectConverter";
+import json5 from "json5";
 
-export default function InputJSON() {
-  const { showModal } = useAppContext();
-
-  const { indent, jsonInput, invalidInput, setInputJson, setOutputJson } =
-    useJsonViewer();
+export default function InputObject() {
+  const { indent, objectInput, invalidInput, setInputObject, setOutputJson } =
+    useObjectConverter();
 
   const pasteData = async () => {
     try {
       if ("clipboard" in navigator) {
         const text = await navigator.clipboard.readText();
-        setInputJson(text);
+        setInputObject(text);
       } else {
         document.execCommand("paste");
       }
@@ -25,16 +23,16 @@ export default function InputJSON() {
   };
 
   const handleInputChange = (value) => {
-    setInputJson(value);
+    setInputObject(value);
   };
 
   const parseJson = () => {
-    const formatted = JSON.stringify(JSON.parse(jsonInput), null, +indent);
+    const formatted = JSON.stringify(json5.parse(objectInput), null, +indent);
     setOutputJson(formatted);
   };
 
   const clearJson = () => {
-    setInputJson("");
+    setInputObject("");
     setOutputJson("");
   };
 
@@ -45,10 +43,10 @@ export default function InputJSON() {
           <button
             type="button"
             onClick={() => parseJson()}
-            disabled={!jsonInput || invalidInput}
+            disabled={!objectInput || invalidInput}
             className="flex items-center gap-1 text-sm py-2 px-4 _btn"
             title="Convert JSON">
-            <span>{invalidInput ? "Invalid JSON" : "Convert"}</span>
+            <span>{invalidInput ? "Invalid Object" : "Convert"}</span>
           </button>
           <button
             type="button"
@@ -57,25 +55,19 @@ export default function InputJSON() {
             title="Paste from Clipboard">
             <span>Paste</span>
           </button>
-          <button
-            type="button"
-            onClick={() => showModal("remote")}
-            className="flex items-center justify-center gap-1 text-sm py-2 px-4 flex-1 _btn"
-            disabled={jsonInput}>
-            <span>Load Remote Data</span>
-          </button>
+          <div className="flex-1"></div>
           <button
             type="button"
             className="flex items-center gap-1 text-sm py-2 px-4 _btn"
             onClick={() => clearJson()}
             title="Clear Input"
-            disabled={!jsonInput}>
+            disabled={!objectInput}>
             <span>Clear</span>
           </button>
         </div>
       </div>
       <textarea
-        value={jsonInput}
+        value={objectInput}
         onChange={(e) => handleInputChange(e.target.value)}
         spellCheck="false"
         className={classNames(

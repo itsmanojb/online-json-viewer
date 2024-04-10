@@ -1,6 +1,6 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
-import useAppContext from "../AppContext";
+import useAppContext from "../hooks/useAppContext";
 import AppHeader from "./AppHeader";
 import Modal from "./Modal";
 

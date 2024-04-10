@@ -1,14 +1,13 @@
 import React from "react";
 import { toast } from "react-hot-toast";
 import { classNames } from "../../utils/helper";
-import useJsonViewer from "../../hooks/useJsonViewer";
-
+import useObjectConverter from "../../hooks/useObjectConverter";
 import TreeView from "./TreeView";
 
 export default function OutputJSON() {
   const {
-    jsonInput,
-    setInputJson,
+    objectInput,
+    setInputObject,
     jsonOutput,
     invalidInput,
     treeView,
@@ -16,7 +15,7 @@ export default function OutputJSON() {
     setIndentation,
     toggleTreeView,
     setOutputJson,
-  } = useJsonViewer();
+  } = useObjectConverter();
 
   const handleCopyClick = () => {
     copyTextToClipboard(jsonOutput)
@@ -38,12 +37,12 @@ export default function OutputJSON() {
 
   const reset = () => {
     setOutputJson("");
-    setInputJson("");
+    setInputObject("");
   };
 
   const handleIndentChange = (val) => {
     setIndentation(val);
-    const formatted = JSON.stringify(JSON.parse(jsonInput), null, +val);
+    const formatted = JSON.stringify(JSON.parse(jsonOutput), null, +val);
     setOutputJson(formatted);
   };
 
@@ -78,14 +77,14 @@ export default function OutputJSON() {
               value={indent}
               className="input py-0.5 text-center w-[80px] pr-1 dark:bg-gray-600 dark:shadow-none dark:ring-transparent dark:text-gray-300"
               onChange={(e) => handleIndentChange(e.target.value)}
-              disabled={invalidInput || !jsonInput}
+              disabled={invalidInput || !objectInput}
             />
           </div>
           <button
             type="button"
             onClick={() => toggleTreeView()}
             title={treeView ? "Switch to Raw JSON" : "Switch to Parsed JSON"}
-            disabled={invalidInput || !jsonInput}
+            disabled={invalidInput || !objectInput}
             className="flex items-center gap-2 text-sm py-2 px-3 md:px-6 md:ml-0 ml-auto _btn">
             <span className="hidden sm:inline">
               {treeView ? "Raw JSON" : "Parsed JSON"}
@@ -98,7 +97,7 @@ export default function OutputJSON() {
             type="button"
             onClick={() => handleCopyClick()}
             title="Copy to Clipboard"
-            disabled={invalidInput || !jsonInput || treeView}
+            disabled={invalidInput || !objectInput || treeView}
             className="flex items-center gap-1 text-sm md:ml-auto py-2 px-3 md:px-6 _btn">
             <span>Copy</span>
           </button>
@@ -106,7 +105,7 @@ export default function OutputJSON() {
             type="button"
             onClick={() => downloadJSON()}
             title="Download JSON File"
-            disabled={invalidInput || !jsonInput || treeView}
+            disabled={invalidInput || !objectInput || treeView}
             className="flex items-center gap-1 text-sm py-2 px-3 md:px-6 _btn">
             <span>Download</span>
           </button>
@@ -115,7 +114,7 @@ export default function OutputJSON() {
             className={`btn-primary px-3 py-1 w-20 md:w-40`}
             onClick={() => reset()}
             title="Clear JSON and Reset"
-            disabled={invalidInput || !jsonInput}>
+            disabled={invalidInput || !objectInput}>
             <span>
               Clear <span className="hidden md:inline">JSON</span>
             </span>

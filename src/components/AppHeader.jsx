@@ -1,29 +1,11 @@
 import React from "react";
-import { classNames } from "../Util";
+import { classNames } from "../utils/helper";
 import { Link, NavLink } from "react-router-dom";
+import { AppModules } from "../utils/config";
 import Logo from "../assets/json-logo.png";
 
 export default function AppHeader() {
-  const links = [
-    {
-      id: 1,
-      label: "Viewer",
-      to: "viewer-editor",
-      disabled: false,
-    },
-    {
-      id: 2,
-      label: "Compare",
-      to: "json-compare",
-      disabled: true,
-    },
-    {
-      id: 3,
-      label: "XML to JSON",
-      to: "xml-json",
-      disabled: true,
-    },
-  ];
+  const links = AppModules.filter((module) => !module.disabled);
   return (
     <header className="px-2 md:px-4 bg-slate-600 text-white">
       <div className="flex items-center">
@@ -32,18 +14,17 @@ export default function AppHeader() {
           <span className="font-bold hidden sm:block">JSON Utilities</span>
         </Link>
         <div className="ml-10 flex items-center">
-          {links.map((link) => (
+          {links.map((link, i) => (
             <NavLink
-              key={link.id}
-              to={link.to}
+              key={i}
+              to={link.url}
               className={({ isActive }) =>
                 classNames(
                   "py-3.5 px-4 sm:px-8 text-sm border-b-[3px] border-transparent",
                   isActive ? "border-yellow-500" : "hover:bg-white/5",
                   link.disabled ? "pointer-events-none opacity-20" : ""
                 )
-              }
-            >
+              }>
               {link.label}
             </NavLink>
           ))}
@@ -53,8 +34,7 @@ export default function AppHeader() {
             href="https://manojbarman.in"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-[14px] px-1 sm:px-2 opacity-60 hover:opacity-90 flex gap-1 items-center border-b-[3px] border-transparent"
-          >
+            className="text-[14px] px-1 sm:px-2 opacity-60 hover:opacity-90 flex gap-1 items-center border-b-[3px] border-transparent">
             <span className="hidden md:inline">About</span>
             Developer
             <svg
@@ -63,8 +43,7 @@ export default function AppHeader() {
               viewBox="0 0 24 24"
               strokeWidth={1.5}
               stroke="currentColor"
-              className="w-4 h-4 ml-1"
-            >
+              className="w-4 h-4 ml-1">
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"

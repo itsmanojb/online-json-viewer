@@ -4,11 +4,13 @@ import {
   Navigate,
   RouterProvider,
 } from "react-router-dom";
-import JSONViewer from "./components/JSONViewer/JSONViewer";
-import XML2JSONConverter from "./components/XML2JSON/XML2JSONConverter";
+import JSONViewer from "./components/JSONViewer/Viewer";
+import JSObjectConverter from "./components/Obj2JSON/Converter";
+// import XML2JSONConverter from "./components/XML2JSON/XML2JSONConverter";
 import AppShell from "./components/AppShell";
 import ErrorBoundary from "./components/ErrorBoundary";
-import { AppContextProvider } from "./AppContext";
+import { AppContextProvider } from "./contexts/AppContext";
+import { ModuleMapping } from "./utils/config";
 
 const router = createBrowserRouter([
   {
@@ -17,16 +19,20 @@ const router = createBrowserRouter([
     children: [
       {
         path: "",
-        element: <Navigate to={"/viewer-editor"} />,
+        element: <Navigate to={ModuleMapping.Viewer} />,
       },
       {
-        path: "viewer-editor",
+        path: ModuleMapping.Viewer,
         element: <JSONViewer />,
       },
       {
-        path: "xml-json",
-        element: <XML2JSONConverter />,
+        path: ModuleMapping.Converter,
+        element: <JSObjectConverter />,
       },
+      // {
+      //   path: "xml-json",
+      //   element: <XML2JSONConverter />,
+      // },
     ],
     errorElement: <ErrorBoundary />,
   },
