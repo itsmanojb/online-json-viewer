@@ -1,6 +1,6 @@
 import { useState } from "react";
 import ReactJson from "react-json-view";
-import useAppContext from "../../AppContext";
+import useJsonViewer from "../../hooks/useJsonViewer";
 
 const TreeView = ({ jsonInput }) => {
   const initial = {
@@ -9,7 +9,7 @@ const TreeView = ({ jsonInput }) => {
     theme: "ocean",
   };
 
-  const { indent } = useAppContext();
+  const { indent } = useJsonViewer();
 
   const [showSize, setShowSize] = useState(true);
   const [showType, setShowType] = useState(true);
@@ -41,8 +41,7 @@ const TreeView = ({ jsonInput }) => {
         <div className="flex-1 pl-3 pr-1 py-2">
           <label
             htmlFor="objSizeInput"
-            className="flex items-center gap-2 text-neutral-500 text-sm cursor-pointer"
-          >
+            className="flex items-center gap-2 text-neutral-500 text-sm cursor-pointer">
             <input
               type="checkbox"
               name="obj-size"
@@ -57,8 +56,7 @@ const TreeView = ({ jsonInput }) => {
         <div className="flex-1 pl-3 pr-1 py-2">
           <label
             htmlFor="objTypeInput"
-            className="flex items-center gap-2 text-neutral-500 text-sm cursor-pointer"
-          >
+            className="flex items-center gap-2 text-neutral-500 text-sm cursor-pointer">
             <input
               type="checkbox"
               name="obj-type"
@@ -73,8 +71,7 @@ const TreeView = ({ jsonInput }) => {
         <div className="flex-1 pl-3 pr-1 py-2">
           <label
             htmlFor="arrGroupInput"
-            className="flex items-center gap-2 text-neutral-500 text-sm cursor-pointer"
-          >
+            className="flex items-center gap-2 text-neutral-500 text-sm cursor-pointer">
             <input
               type="checkbox"
               name="obj-type"
@@ -89,8 +86,7 @@ const TreeView = ({ jsonInput }) => {
         <div className="flex-1 pl-3 pr-1 py-2">
           <label
             htmlFor="strTruncInput"
-            className="flex items-center gap-2 text-neutral-500 text-sm cursor-pointer"
-          >
+            className="flex items-center gap-2 text-neutral-500 text-sm cursor-pointer">
             <input
               type="checkbox"
               name="obj-type"

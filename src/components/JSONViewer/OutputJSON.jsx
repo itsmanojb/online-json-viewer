@@ -1,7 +1,8 @@
 import React from "react";
 import { toast } from "react-hot-toast";
-import { classNames } from "../../Util";
-import useAppContext from "../../AppContext";
+import { classNames } from "../../utils/helper";
+import useJsonViewer from "../../hooks/useJsonViewer";
+
 import TreeView from "./TreeView";
 
 export default function OutputJSON() {
@@ -15,7 +16,7 @@ export default function OutputJSON() {
     setIndentation,
     toggleTreeView,
     setOutputJson,
-  } = useAppContext();
+  } = useJsonViewer();
 
   const handleCopyClick = () => {
     copyTextToClipboard(jsonInput)
@@ -62,10 +63,12 @@ export default function OutputJSON() {
 
   return (
     <>
-      <div className="bg-neutral-100 border-b border-neutral-200">
-        <div className="flex items-center divide-x divide-neutral-300 px-2">
+      <div className="bg-neutral-100 border-b border-neutral-200 dark:bg-gray-700 dark:border-gray-600">
+        <div className="flex items-center divide-x divide-neutral-300 px-2 dark:divide-gray-600">
           <div className="flex items-center gap-2 pl-l pr-4">
-            <span className="text-gray-700 text-sm">Indentation</span>
+            <span className="text-gray-700 text-sm dark:text-gray-300">
+              Indentation
+            </span>
             <input
               type="number"
               placeholder="Indent"
@@ -73,7 +76,7 @@ export default function OutputJSON() {
               min={0}
               max={10}
               value={indent}
-              className="input py-0.5 text-center w-[80px] pr-1"
+              className="input py-0.5 text-center w-[80px] pr-1 dark:bg-gray-600 dark:shadow-none dark:ring-transparent dark:text-gray-300"
               onChange={(e) => handleIndentChange(e.target.value)}
               disabled={invalidInput || !jsonInput}
             />
@@ -83,8 +86,7 @@ export default function OutputJSON() {
             onClick={() => toggleTreeView()}
             title={treeView ? "Switch to Raw JSON" : "Switch to Parsed JSON"}
             disabled={invalidInput || !jsonInput}
-            className="flex items-center gap-2 text-sm py-2 px-3 md:px-6 md:ml-0 ml-auto _btn"
-          >
+            className="flex items-center gap-2 text-sm py-2 px-3 md:px-6 md:ml-0 ml-auto _btn">
             <span className="hidden sm:inline">
               {treeView ? "Raw JSON" : "Parsed JSON"}
             </span>
@@ -97,8 +99,7 @@ export default function OutputJSON() {
             onClick={() => handleCopyClick()}
             title="Copy to Clipboard"
             disabled={invalidInput || !jsonInput || treeView}
-            className="flex items-center gap-1 text-sm md:ml-auto py-2 px-3 md:px-6 _btn"
-          >
+            className="flex items-center gap-1 text-sm md:ml-auto py-2 px-3 md:px-6 _btn">
             <span>Copy</span>
           </button>
           <button
@@ -106,8 +107,7 @@ export default function OutputJSON() {
             onClick={() => downloadJSON()}
             title="Download JSON File"
             disabled={invalidInput || !jsonInput || treeView}
-            className="flex items-center gap-1 text-sm py-2 px-3 md:px-6 _btn"
-          >
+            className="flex items-center gap-1 text-sm py-2 px-3 md:px-6 _btn">
             <span>Download</span>
           </button>
           <button
@@ -115,8 +115,7 @@ export default function OutputJSON() {
             className={`btn-primary px-3 py-1 w-20 md:w-40`}
             onClick={() => reset()}
             title="Clear JSON and Reset"
-            disabled={invalidInput || !jsonInput}
-          >
+            disabled={invalidInput || !jsonInput}>
             <span>
               Clear <span className="hidden md:inline">JSON</span>
             </span>
@@ -137,8 +136,7 @@ export default function OutputJSON() {
               "w-full h-full border-0 p-2 focus:outline-none focus:ring-0 resize-none font-mono text-xs cursor-text",
               "bg-[#2b303b] text-white"
             )}
-            readOnly
-          ></textarea>
+            readOnly></textarea>
         )}
       </div>
     </>

@@ -1,30 +1,19 @@
-import React, { useState } from "react";
-import useAppContext from "../../AppContext";
-import { classNames } from "../../Util";
+import { useState } from "react";
 import { toast } from "react-hot-toast";
+import { checkUrl, classNames } from "../../utils/helper";
+import useAppContext from "../../hooks/useAppContext";
+import useJsonViewer from "../../hooks/useJsonViewer";
 
 export default function RemoteURLForm() {
   const [url, setUrl] = useState("");
   const [invalidURL, setInvalidURL] = useState(false);
   const [submitted, setSubmitted] = useState(false);
-  const { hideModal, setInputJson, setOutputJson, indent } = useAppContext();
+  const { hideModal } = useAppContext();
+  const { setInputJson, setOutputJson, indent } = useJsonViewer();
 
   function handleInputChange(value) {
     setUrl(value);
-    checkUrl(value);
-  }
-
-  function checkUrl(url) {
-    if (!url) return;
-    const expression =
-      /(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})/gi;
-    const regex = new RegExp(expression);
-
-    if (url.match(regex)) {
-      setInvalidURL(false);
-    } else {
-      setInvalidURL(true);
-    }
+    setInvalidURL(checkUrl(value));
   }
 
   function loadRemoteData(e) {
@@ -60,8 +49,7 @@ export default function RemoteURLForm() {
       <form>
         <label
           htmlFor="remote-url"
-          className="block text-sm font-medium leading-6 text-neutral-700"
-        >
+          className="block text-sm font-medium leading-6 text-neutral-700">
           API / Remote Data URL
         </label>
         <div className="relative mt-2 rounded-md shadow-sm">
@@ -86,8 +74,7 @@ export default function RemoteURLForm() {
                 viewBox="0 0 24 24"
                 strokeWidth={1.5}
                 stroke="currentColor"
-                className="h-5 w-5 text-red-500"
-              >
+                className="h-5 w-5 text-red-500">
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -102,8 +89,7 @@ export default function RemoteURLForm() {
             type="submit"
             className="btn-primary px-3 py-2"
             disabled={invalidURL || url.trim() === ""}
-            onClick={loadRemoteData}
-          >
+            onClick={loadRemoteData}>
             {url.trim() === ""
               ? "Enter URL"
               : invalidURL

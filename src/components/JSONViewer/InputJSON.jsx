@@ -1,17 +1,14 @@
 import React from "react";
-import { classNames } from "../../Util";
-import useAppContext from "../../AppContext";
 import { toast } from "react-hot-toast";
+import { classNames } from "../../utils/helper";
+import useAppContext from "../../hooks/useAppContext";
+import useJsonViewer from "../../hooks/useJsonViewer";
 
 export default function InputJSON() {
-  const {
-    indent,
-    jsonInput,
-    invalidInput,
-    setInputJson,
-    setOutputJson,
-    showRemoteURLModal,
-  } = useAppContext();
+  const { showModal } = useAppContext();
+
+  const { indent, jsonInput, invalidInput, setInputJson, setOutputJson } =
+    useJsonViewer();
 
   const pasteData = async () => {
     try {
@@ -43,32 +40,28 @@ export default function InputJSON() {
 
   return (
     <>
-      <div className="bg-neutral-100 sticky top-0 border-b border-neutral-200">
-        <div className="flex items-center divide-x divide-neutral-300">
-          {jsonInput && !invalidInput && (
-            <button
-              type="button"
-              onClick={() => parseJson()}
-              className="flex items-center gap-1 text-sm py-2 px-4 _btn"
-              title="Convert JSON"
-            >
-              <span>Convert</span>
-            </button>
-          )}
+      <div className="bg-neutral-100 sticky top-0 border-b border-neutral-200 dark:bg-gray-700 dark:border-gray-600">
+        <div className="flex items-center divide-x divide-neutral-300 dark:divide-gray-600">
+          <button
+            type="button"
+            onClick={() => parseJson()}
+            disabled={!jsonInput || invalidInput}
+            className="flex items-center gap-1 text-sm py-2 px-4 _btn"
+            title="Convert JSON">
+            <span>{invalidInput ? "Invalid JSON" : "Convert"}</span>
+          </button>
           <button
             type="button"
             onClick={() => pasteData()}
             className="flex items-center gap-1 text-sm py-2 px-4 _btn"
-            title="Paste from Clipboard"
-          >
+            title="Paste from Clipboard">
             <span>Paste</span>
           </button>
           <button
             type="button"
-            onClick={() => showRemoteURLModal()}
+            onClick={() => showModal("remote")}
             className="flex items-center justify-center gap-1 text-sm py-2 px-4 flex-1 _btn"
-            disabled={jsonInput}
-          >
+            disabled={jsonInput}>
             <span>Load Remote Data</span>
           </button>
           <button
@@ -76,8 +69,7 @@ export default function InputJSON() {
             className="flex items-center gap-1 text-sm py-2 px-4 _btn"
             onClick={() => clearJson()}
             title="Clear Input"
-            disabled={!jsonInput}
-          >
+            disabled={!jsonInput}>
             <span>Clear</span>
           </button>
         </div>
@@ -87,7 +79,7 @@ export default function InputJSON() {
         onChange={(e) => handleInputChange(e.target.value)}
         spellCheck="false"
         className={classNames(
-          "ml-0.5 my-0.5 border-0 p-2 focus:outline-none resize-none font-mono text-xs",
+          "ml-0.5 my-0.5 border-0 p-2 focus:outline-none resize-none font-mono text-xs bg-transparent dark:text-gray-300",
           invalidInput
             ? "focus:ring-2 ring-2 ring-red-400 focus:ring-red-400"
             : "focus:ring-0"
@@ -96,8 +88,7 @@ export default function InputJSON() {
           width: "calc(100% - 4px)",
           height: "calc(100% - 6px)",
         }}
-        placeholder="Type (or Paste) here"
-      ></textarea>
+        placeholder="Type (or Paste) here"></textarea>
     </>
   );
 }

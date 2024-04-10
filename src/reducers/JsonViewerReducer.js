@@ -1,5 +1,6 @@
+import { isInvalidJSON } from "../utils/helper";
+
 export const initialState = {
-  modal: null,
   jsonInput: undefined,
   invalidInput: false,
   jsonOutput: undefined,
@@ -7,32 +8,10 @@ export const initialState = {
   indent: 2,
 };
 
-function isInvalidJSON(value) {
-  if (value) {
-    try {
-      JSON.parse(value);
-      return false;
-    } catch (e) {
-      return true;
-    }
-  }
-  return true;
-}
-
-const AppReducer = (state, action) => {
+const JsonViewerReducer = (state, action) => {
   const { type, payload } = action;
 
   switch (type) {
-    case "SHOW_URL_FORM":
-      return {
-        ...state,
-        modal: "remote",
-      };
-    case "HIDE_URL_FORM":
-      return {
-        ...state,
-        modal: null,
-      };
     case "SET_JSON_INPUT":
       return {
         ...state,
@@ -59,4 +38,4 @@ const AppReducer = (state, action) => {
   }
 };
 
-export default AppReducer;
+export default JsonViewerReducer;
