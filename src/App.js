@@ -4,8 +4,8 @@ import {
   Navigate,
   RouterProvider,
 } from "react-router-dom";
-import JSONViewer from "./components/JSONViewer/Viewer";
-import JSObjectConverter from "./components/Obj2JSON/Converter";
+import JSONViewer from "./modules/JSONViewer/Viewer";
+import JSObjectConverter from "./modules/Obj2JSON/Converter";
 // import XML2JSONConverter from "./components/XML2JSON/XML2JSONConverter";
 import AppShell from "./components/AppShell";
 import ErrorBoundary from "./components/ErrorBoundary";

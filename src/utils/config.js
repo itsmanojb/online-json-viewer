@@ -14,15 +14,15 @@ export const AppModules = [
   },
   {
     id: 2,
-    label: "Compare",
-    url: ModuleMapping.Compare,
-    disabled: true,
-  },
-  {
-    id: 3,
     label: "JS to JSON",
     url: ModuleMapping.Converter,
     disabled: false,
+  },
+  {
+    id: 3,
+    label: "Compare",
+    url: ModuleMapping.Compare,
+    disabled: true,
   },
   {
     id: 4,
