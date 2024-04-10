@@ -1,7 +1,21 @@
+import json5 from "json5";
+
 function isInvalidJSON(value) {
   if (value) {
     try {
       JSON.parse(value);
+      return false;
+    } catch (e) {
+      return true;
+    }
+  }
+  return true;
+}
+
+function isInvalidObject(value) {
+  if (value) {
+    try {
+      json5.parse(value);
       return false;
     } catch (e) {
       return true;
@@ -23,4 +37,4 @@ function checkUrl(url) {
   return url.match(regex) ? false : true;
 }
 
-export { classNames, isInvalidJSON, checkUrl };
+export { classNames, isInvalidJSON, isInvalidObject, checkUrl };
