@@ -49,7 +49,7 @@ export default function RemoteURLForm() {
       <form>
         <label
           htmlFor="remote-url"
-          className="block text-sm font-medium leading-6 text-neutral-700">
+          className="block text-sm font-medium leading-6 text-neutral-700 dark:text-gray-300">
           API / Remote Data URL
         </label>
         <div className="relative mt-2 rounded-md shadow-sm">
@@ -59,7 +59,8 @@ export default function RemoteURLForm() {
             id="remote-url"
             className={classNames(
               "input py-2",
-              invalidURL ? "ring-red-300" : "ring-slate-300"
+              "dark:bg-gray-700",
+              invalidURL ? "ring-red-300" : "ring-slate-300 dark:ring-gray-600"
             )}
             placeholder="https://www.example.com"
             value={url}

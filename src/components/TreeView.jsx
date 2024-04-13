@@ -1,6 +1,6 @@
 import { useState } from "react";
 import ReactJson from "react-json-view";
-import useJsonViewer from "../../hooks/useJsonViewer";
+import useJsonViewer from "../hooks/useJsonViewer";
 
 const TreeView = ({ jsonInput }) => {
   const initial = {

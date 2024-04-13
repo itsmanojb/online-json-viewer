@@ -4,13 +4,15 @@ import {
   Navigate,
   RouterProvider,
 } from "react-router-dom";
-import JSONViewer from "./components/JSONViewer/Viewer";
-import JSObjectConverter from "./components/Obj2JSON/Converter";
+import JSONViewer from "./modules/JSONViewer/Viewer";
+import JSObjectConverter from "./modules/Obj2JSON/Converter";
 // import XML2JSONConverter from "./components/XML2JSON/XML2JSONConverter";
 import AppShell from "./components/AppShell";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { AppContextProvider } from "./contexts/AppContext";
 import { ModuleMapping } from "./utils/config";
+import { JsonViewerProvider } from "./contexts/JsonViewerContext";
+import { ObjectConverterProvider } from "./contexts/ObjectConverterContext";
 
 const router = createBrowserRouter([
   {
@@ -41,8 +43,12 @@ const router = createBrowserRouter([
 function App() {
   return (
     <AppContextProvider>
-      <RouterProvider router={router} />
-      <Toaster position="center-bottom" />
+      <JsonViewerProvider>
+        <ObjectConverterProvider>
+          <RouterProvider router={router} />
+          <Toaster position="center-bottom" />
+        </ObjectConverterProvider>
+      </JsonViewerProvider>
     </AppContextProvider>
   );
 }

@@ -1,10 +1,9 @@
-import { JsonViewerProvider } from "../../contexts/JsonViewerContext";
-import useJsonViewer from "../../hooks/useJsonViewer";
-import InputJSON from "./InputJSON";
+import useObjectConverter from "../../hooks/useObjectConverter";
+import InputObject from "./InputObject";
 import OutputJSON from "./OutputJSON";
 
-const Viewer = () => {
-  const { jsonOutput } = useJsonViewer();
+const Converter = () => {
+  const { jsonOutput } = useObjectConverter();
 
   return (
     <div
@@ -12,7 +11,7 @@ const Viewer = () => {
       style={{ height: "calc(100vh - 51px)" }}>
       {!jsonOutput ? (
         <div className="flex-1 relative pb-9">
-          <InputJSON />
+          <InputObject />
         </div>
       ) : (
         <div className="flex-1 relative pb-9 min-h-[60vh] md:min-h-0">
@@ -23,12 +22,4 @@ const Viewer = () => {
   );
 };
 
-const ComponentWithProvider = () => {
-  return (
-    <JsonViewerProvider>
-      <Viewer />
-    </JsonViewerProvider>
-  );
-};
-
-export default ComponentWithProvider;
+export default Converter;

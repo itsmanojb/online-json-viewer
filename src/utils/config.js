@@ -1,8 +1,8 @@
 export const ModuleMapping = {
-  Viewer: "viewer-editor",
-  Converter: "object-to-json",
-  Compare: "json-compare",
-  XML: "xml-to-json",
+  Viewer: "/viewer-editor",
+  Converter: "/object-to-json",
+  Compare: "/json-compare",
+  XML: "/xml-to-json",
 };
 
 export const AppModules = [
@@ -14,15 +14,15 @@ export const AppModules = [
   },
   {
     id: 2,
-    label: "Compare",
-    url: ModuleMapping.Compare,
-    disabled: true,
-  },
-  {
-    id: 3,
     label: "JS to JSON",
     url: ModuleMapping.Converter,
     disabled: false,
+  },
+  {
+    id: 3,
+    label: "Compare",
+    url: ModuleMapping.Compare,
+    disabled: true,
   },
   {
     id: 4,
