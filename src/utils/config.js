@@ -1,8 +1,8 @@
 export const ModuleMapping = {
-  Viewer: "viewer-editor",
-  Converter: "object-to-json",
-  Compare: "json-compare",
-  XML: "xml-to-json",
+  Viewer: "/viewer-editor",
+  Converter: "/object-to-json",
+  Compare: "/json-compare",
+  XML: "/xml-to-json",
 };
 
 export const AppModules = [

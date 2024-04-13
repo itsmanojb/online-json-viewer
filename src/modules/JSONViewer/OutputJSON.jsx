@@ -10,6 +10,7 @@ export default function OutputJSON() {
     jsonInput,
     setInputJson,
     jsonOutput,
+    modifiedJson,
     invalidInput,
     treeView,
     indent,
@@ -66,7 +67,7 @@ export default function OutputJSON() {
       <JSONOutput
         isInvalid={invalidInput}
         treeView={treeView}
-        data={jsonOutput}
+        data={modifiedJson}
       />
     </>
   );

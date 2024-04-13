@@ -70,11 +70,82 @@ function downloadAsJSON(json) {
   URL.revokeObjectURL(href);
 }
 
+function modifyJSON(jsonStr, action, payload, indent) {
+  const json = JSON.parse(jsonStr);
+  let modifiedJson;
+  if (Array.isArray(json)) {
+    modifiedJson = json.map((obj) => {
+      if (action === "sort") {
+        return sortObject(obj, payload);
+      }
+      if (action === "exclude") {
+        return excludeKeysFromObject(obj, payload);
+      }
+      return obj;
+    });
+  } else if (typeof json === "object") {
+    const obj = json;
+    if (action === "sort") {
+      modifiedJson = sortObject(obj, payload);
+    }
+    if (action === "exclude") {
+      modifiedJson = excludeKeysFromObject(obj, payload);
+    }
+    modifiedJson = obj;
+  }
+
+  return JSON.stringify(modifiedJson, null, indent);
+}
+
+function getObjectProps(jsonString) {
+  const obj = JSON.parse(jsonString);
+  let props = [];
+  if (Array.isArray(obj)) {
+    const keyLengths = obj.map((o) => Object.keys(o).length);
+    const largestObjectIndex = keyLengths.reduce(
+      (maxIndex, currentValue, currentIndex, array) =>
+        currentValue > array[maxIndex] ? currentIndex : maxIndex,
+      0
+    );
+    props = Object.keys(obj[largestObjectIndex]);
+  } else if (typeof json === "object") {
+    props = Object.keys(obj);
+  }
+
+  return props;
+}
+
+function sortObject(obj, sortOrder) {
+  return Object.keys(obj)
+    .sort((a, b) => {
+      if (sortOrder === "desc") {
+        return a > b ? -1 : 1;
+      }
+      if (sortOrder === "asc") {
+        return a > b ? 1 : -1;
+      }
+      return 1;
+    })
+    .reduce((o, key) => {
+      o[key] = obj[key];
+      return o;
+    }, {});
+}
+
+function excludeKeysFromObject(obj, keys) {
+  return keys.reduce((a, e) => {
+    const { [e]: omit, ...rest } = a;
+    return rest;
+  }, obj);
+}
+
 export {
   classNames,
   isInvalidJSON,
   isInvalidObject,
   checkUrl,
   copyContent,
+  getObjectProps,
+  modifyJSON,
   downloadAsJSON,
 };

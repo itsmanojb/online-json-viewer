@@ -1,4 +1,3 @@
-import { JsonViewerProvider } from "../../contexts/JsonViewerContext";
 import useJsonViewer from "../../hooks/useJsonViewer";
 import InputJSON from "./InputJSON";
 import OutputJSON from "./OutputJSON";
@@ -23,12 +22,4 @@ const Viewer = () => {
   );
 };
 
-const ComponentWithProvider = () => {
-  return (
-    <JsonViewerProvider>
-      <Viewer />
-    </JsonViewerProvider>
-  );
-};
-
-export default ComponentWithProvider;
+export default Viewer;

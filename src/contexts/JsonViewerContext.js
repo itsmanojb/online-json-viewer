@@ -32,12 +32,35 @@ export const JsonViewerProvider = ({ children }) => {
     });
   };
 
+  const setSortOrder = (val) => {
+    dispatch({
+      type: "SET_SORT_ORDER",
+      payload: val,
+    });
+  };
+
+  const resetSorting = () => {
+    dispatch({
+      type: "RESET_SORTING",
+    });
+  };
+
+  const setExcludedProps = (val) => {
+    dispatch({
+      type: "EXCLUDE_PROP",
+      payload: val,
+    });
+  };
+
   const data = {
     ...state,
     setInputJson,
     setOutputJson,
     toggleTreeView,
     setIndentation,
+    setSortOrder,
+    resetSorting,
+    setExcludedProps,
   };
 
   return (

@@ -32,12 +32,35 @@ export const ObjectConverterProvider = ({ children }) => {
     });
   };
 
+  const setSortOrder = (val) => {
+    dispatch({
+      type: "SET_SORT_ORDER",
+      payload: val,
+    });
+  };
+
+  const resetSorting = () => {
+    dispatch({
+      type: "RESET_SORTING",
+    });
+  };
+
+  const setExcludedProps = (val) => {
+    dispatch({
+      type: "EXCLUDE_PROP",
+      payload: val,
+    });
+  };
+
   const data = {
     ...state,
     setInputObject,
     setOutputJson,
     toggleTreeView,
     setIndentation,
+    setSortOrder,
+    resetSorting,
+    setExcludedProps,
   };
 
   return (

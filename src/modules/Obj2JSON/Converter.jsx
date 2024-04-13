@@ -1,4 +1,3 @@
-import { ObjectConverterProvider } from "../../contexts/ObjectConverterContext";
 import useObjectConverter from "../../hooks/useObjectConverter";
 import InputObject from "./InputObject";
 import OutputJSON from "./OutputJSON";
@@ -23,12 +22,4 @@ const Converter = () => {
   );
 };
 
-const ComponentWithProvider = () => {
-  return (
-    <ObjectConverterProvider>
-      <Converter />
-    </ObjectConverterProvider>
-  );
-};
-
-export default ComponentWithProvider;
+export default Converter;
