@@ -1,7 +1,7 @@
 export const ModuleMapping = {
   Viewer: "/viewer-editor",
   Converter: "/object-to-json",
-  Compare: "/json-compare",
+  Diff: "/json-diff",
   XML: "/xml-to-json",
 };
 
@@ -20,9 +20,9 @@ export const AppModules = [
   },
   {
     id: 3,
-    label: "Compare",
-    url: ModuleMapping.Compare,
-    disabled: true,
+    label: "JSON Diff",
+    url: ModuleMapping.Diff,
+    disabled: false,
   },
   {
     id: 4,

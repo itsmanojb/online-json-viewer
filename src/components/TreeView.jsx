@@ -99,7 +99,7 @@ const TreeView = ({ jsonInput }) => {
           </label>
         </div>
       </div>
-      <div className="flex-1 overflow-auto p-2">
+      <div className="flex-1 overflow-auto p-2 scroller">
         {jsonInput && (
           <ReactJson
             src={JSON.parse(jsonInput)}

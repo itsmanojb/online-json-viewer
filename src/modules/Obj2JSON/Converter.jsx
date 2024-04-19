@@ -1,14 +1,18 @@
+import { useEffect } from "react";
 import useObjectConverter from "../../hooks/useObjectConverter";
 import InputObject from "./InputObject";
 import OutputJSON from "./OutputJSON";
 
 const Converter = () => {
+  useEffect(() => {
+    document.title = "JS to JSON";
+  }, []);
   const { jsonOutput } = useObjectConverter();
 
   return (
     <div
       className="flex flex-col lg:flex-row overflow-hidden divide-y lg:divide-y-0 lg:divide-x dark:bg-[#2b303b]"
-      style={{ height: "calc(100vh - 51px)" }}>
+      style={{ height: "calc(100vh - 39px)" }}>
       {!jsonOutput ? (
         <div className="flex-1 relative pb-9">
           <InputObject />

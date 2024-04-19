@@ -1,8 +1,8 @@
 import React from "react";
 import { toast } from "react-hot-toast";
+import json5 from "json5";
 import { classNames } from "../../utils/helper";
 import useObjectConverter from "../../hooks/useObjectConverter";
-import json5 from "json5";
 
 export default function InputObject() {
   const { indent, objectInput, invalidInput, setInputObject, setOutputJson } =
@@ -43,7 +43,7 @@ export default function InputObject() {
           <button
             type="button"
             onClick={() => pasteData()}
-            className="flex items-center gap-1 text-sm py-2 px-4 _btn"
+            className="flex items-center gap-1 text-xs py-2 px-4 _btn"
             title="Paste from Clipboard">
             <span>Paste</span>
           </button>
@@ -51,13 +51,13 @@ export default function InputObject() {
             type="button"
             onClick={() => parseJson()}
             disabled={!objectInput || invalidInput}
-            className="flex items-center justify-center gap-1 text-sm py-2 px-4 flex-1 _btn"
+            className="flex items-center justify-center gap-1 text-xs py-2 px-4 flex-1 _btn"
             title="Convert JSON">
             <span>{invalidInput ? "Invalid Object" : "Convert"}</span>
           </button>
           <button
             type="button"
-            className="flex items-center gap-1 text-sm py-2 px-4 _btn"
+            className="flex items-center gap-1 text-xs py-2 px-4 _btn"
             onClick={() => clearJson()}
             title="Clear Input"
             disabled={!objectInput}>
@@ -70,14 +70,14 @@ export default function InputObject() {
         onChange={(e) => handleInputChange(e.target.value)}
         spellCheck="false"
         className={classNames(
-          "ml-0.5 my-0.5 border-0 p-2 focus:outline-none resize-none font-mono text-xs bg-transparent dark:text-gray-300",
+          "ml-0.5 my-0.5 border-0 p-2 focus:outline-none resize-none font-mono text-xs bg-transparent dark:text-gray-300 scroller",
           invalidInput
             ? "focus:ring-2 ring-2 ring-red-400 focus:ring-red-400"
             : "focus:ring-0"
         )}
         style={{
           width: "calc(100% - 4px)",
-          height: "calc(100% - 6px)",
+          height: "calc(100% - 2px)",
         }}
         placeholder="Type (or Paste) here"></textarea>
     </>

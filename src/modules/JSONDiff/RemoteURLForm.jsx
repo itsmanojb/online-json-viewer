@@ -2,14 +2,14 @@ import { useState } from "react";
 import { toast } from "react-hot-toast";
 import { checkUrl, classNames } from "../../utils/helper";
 import useAppContext from "../../hooks/useAppContext";
-import useJsonViewer from "../../hooks/useJsonViewer";
+import useJsonDiff from "../../hooks/useJsonDiff";
 
 export default function RemoteURLForm() {
   const [url, setUrl] = useState("");
   const [invalidURL, setInvalidURL] = useState(false);
   const [submitted, setSubmitted] = useState(false);
-  const { hideModal } = useAppContext();
-  const { setInputJson, setOutputJson, indent } = useJsonViewer();
+  const { modal, hideModal } = useAppContext();
+  const { setInputJson1, setInputJson2 } = useJsonDiff();
 
   function handleInputChange(value) {
     setUrl(value);
@@ -26,14 +26,19 @@ export default function RemoteURLForm() {
       .then(
         (result) => {
           toast.success("Remote data loaded successfully");
+
           const jsonInput = JSON.stringify(result);
-          setInputJson(jsonInput);
-          const formatted = JSON.stringify(
-            JSON.parse(jsonInput),
-            null,
-            +indent
-          );
-          setOutputJson(formatted);
+          // const formatted = JSON.stringify(
+          //   JSON.parse(jsonInput),
+          //   null,
+          //   +indent
+          // );
+
+          if (modal === "remote1") {
+            setInputJson1(jsonInput);
+          } else if (modal === "remote2") {
+            setInputJson2(jsonInput);
+          }
           hideModal();
         },
         (error) => {

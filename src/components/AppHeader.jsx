@@ -10,8 +10,8 @@ export default function AppHeader() {
     <header className="px-2 md:px-4 bg-slate-600 text-white">
       <div className="flex items-center">
         <Link to={"/"} className="flex items-center gap-2">
-          <img src={Logo} alt="logo" className="h-8 object-contain invert" />
-          <span className="font-bold hidden sm:block">JSON Utilities</span>
+          <img src={Logo} alt="logo" className="h-6 object-contain invert" />
+          <span className="font-bold hidden md:block">JSON Utilities</span>
         </Link>
         <div className="ml-10 flex items-center">
           {links.map((link, i) => (
@@ -20,7 +20,7 @@ export default function AppHeader() {
               to={link.url}
               className={({ isActive }) =>
                 classNames(
-                  "py-3.5 px-4 sm:px-8 text-sm border-b-[3px] border-transparent",
+                  "py-2 px-4 sm:px-8 text-sm border-b-[3px] border-transparent",
                   isActive ? "border-yellow-500" : "hover:bg-white/5",
                   link.disabled ? "pointer-events-none opacity-20" : ""
                 )
