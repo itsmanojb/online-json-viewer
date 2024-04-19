@@ -4,7 +4,7 @@
 
 @layer components {
   ._btn {
-    @apply text-gray-500 disabled:opacity-30 disabled:pointer-events-none dark:text-gray-300 select-none;
+    @apply text-gray-500 disabled:text-opacity-30 disabled:pointer-events-none dark:text-gray-300 select-none;
   }
   .btn-primary {
     @apply _btn inline-flex w-full items-center justify-center rounded-[4px] bg-slate-600 text-sm font-semibold text-white shadow-sm hover:bg-slate-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-600 disabled:grayscale;
@@ -16,5 +16,58 @@
   .radio,
   .checkbox {
     @apply checked:bg-slate-500 checked:hover:bg-slate-500 checked:active:bg-slate-500 checked:focus:bg-slate-500 focus:outline-none focus:ring-1 focus:ring-slate-500;
+  }
+}
+
+.scroller {
+  --scrollbar-color-thumb: #475569;
+  --scrollbar-color-track: transparent;
+  --scrollbar-width: thin;
+  --scrollbar-width-legacy: 10px;
+}
+
+.json-diff-viewer td {
+  @apply text-neutral-500;
+}
+
+.json-diff-viewer td.line-number,
+.json-diff-viewer tr.expand-line .has-lines-after,
+.json-diff-viewer tr.expand-line .has-lines-before {
+  @apply border-neutral-300 dark:border-gray-600;
+}
+
+.json-diff-viewer td.line-modify,
+.json-diff-viewer td.line-add,
+.json-diff-viewer td.line-remove {
+  @apply text-neutral-800;
+}
+
+@media (prefers-color-scheme: dark) {
+  .scroller {
+    --scrollbar-color-thumb: rgb(234, 179, 8);
+  }
+
+  .json-diff-viewer td {
+    @apply text-white;
+  }
+}
+
+@supports (scrollbar-width: auto) {
+  .scroller {
+    scrollbar-color: var(--scrollbar-color-thumb) var(--scrollbar-color-track);
+    scrollbar-width: var(--scrollbar-width);
+  }
+}
+
+@supports selector(::-webkit-scrollbar) {
+  .scroller::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-color-thumb);
+  }
+  .scroller::-webkit-scrollbar-track {
+    background: var(--scrollbar-color-track);
+  }
+  .scroller::-webkit-scrollbar {
+    max-width: var(--scrollbar-width-legacy);
+    max-height: var(--scrollbar-width-legacy);
   }
 }

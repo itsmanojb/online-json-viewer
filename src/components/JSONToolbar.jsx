@@ -10,7 +10,7 @@ export default function JSONToolbar(props) {
   return (
     <div className="flex items-center divide-x divide-neutral-300 px-2 dark:divide-gray-600">
       <div className="flex items-center gap-2 pl-l pr-4">
-        <span className="text-gray-700 text-sm dark:text-gray-300">
+        <span className="text-gray-700 text-xs dark:text-gray-300">
           Indentation
         </span>
         <input
@@ -30,7 +30,7 @@ export default function JSONToolbar(props) {
         onClick={() => onToggleClick()}
         title={treeView ? "Switch to JSON" : "Switch to Tree view"}
         disabled={viewToggleDisabled}
-        className="flex items-center gap-2 text-sm py-2 px-3 md:px-6 md:ml-0 ml-auto _btn">
+        className="flex items-center gap-2 text-xs py-2 px-3 md:px-6 md:ml-0 ml-auto _btn">
         <span className="hidden sm:inline">
           {treeView ? "JSON view" : "Treeview"}
         </span>
@@ -43,7 +43,7 @@ export default function JSONToolbar(props) {
         title="Modify JSON Structure"
         onClick={() => onModifyClick()}
         disabled={modifyDisabled}
-        className="flex items-center gap-1 text-sm md:ml-auto py-2 px-3 md:px-6 _btn">
+        className="flex items-center gap-1 text-xs md:ml-auto py-2 px-3 md:px-6 _btn">
         <span>
           Modify <span className="hidden sm:inline">JSON</span>
         </span>
@@ -53,7 +53,7 @@ export default function JSONToolbar(props) {
         onClick={() => onCopyClick()}
         title="Copy to Clipboard"
         disabled={copyDisabled}
-        className="flex items-center gap-1 text-sm py-2 px-3 md:px-6 _btn">
+        className="flex items-center gap-1 text-xs py-2 px-3 md:px-6 _btn">
         <span>Copy</span>
       </button>
       <button
@@ -61,12 +61,12 @@ export default function JSONToolbar(props) {
         onClick={() => onDownloadClick()}
         title="Download JSON File"
         disabled={downloadDisabled}
-        className="flex items-center gap-1 text-sm py-2 px-3 md:px-6 _btn">
+        className="flex items-center gap-1 text-xs py-2 px-3 md:px-6 _btn">
         <span>Download</span>
       </button>
       <button
         type="button"
-        className={`btn-primary px-3 py-1 w-20 md:w-40`}
+        className={`btn-primary text-xs px-3 py-1 w-20 md:w-40`}
         onClick={() => onClear()}
         title="Clear JSON and Reset"
         disabled={clearDisabled}>

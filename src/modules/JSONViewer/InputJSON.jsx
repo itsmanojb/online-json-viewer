@@ -45,14 +45,14 @@ export default function InputJSON() {
           <button
             type="button"
             onClick={() => pasteData()}
-            className="flex items-center gap-1 text-sm py-2 px-4 _btn"
+            className="flex items-center gap-1 text-xs py-2 px-4 _btn"
             title="Paste from Clipboard">
             <span>Paste</span>
           </button>
           <button
             type="button"
             onClick={() => showModal("remote")}
-            className="flex items-center gap-1 text-sm py-2 px-4 _btn"
+            className="flex items-center gap-1 text-xs py-2 px-4 _btn"
             disabled={jsonInput}>
             <span>
               Load <span className="hidden md:inline">Remote</span> Data
@@ -62,13 +62,13 @@ export default function InputJSON() {
             type="button"
             onClick={() => parseJson()}
             disabled={!jsonInput || invalidInput}
-            className="flex items-center justify-center gap-1 text-sm py-2 px-4 flex-1 _btn"
-            title="Convert JSON">
-            <span>{invalidInput ? "Invalid JSON" : "Convert"}</span>
+            className="flex items-center justify-center gap-1 text-xs py-2 px-4 flex-1 _btn"
+            title="Parse JSON">
+            <span>{invalidInput ? "Invalid JSON" : "Parse JSON Input"}</span>
           </button>
           <button
             type="button"
-            className="flex items-center gap-1 text-sm py-2 px-4 _btn"
+            className="flex items-center gap-1 text-xs py-2 px-4 _btn"
             onClick={() => clearJson()}
             title="Clear Input"
             disabled={!jsonInput}>
@@ -81,14 +81,14 @@ export default function InputJSON() {
         onChange={(e) => handleInputChange(e.target.value)}
         spellCheck="false"
         className={classNames(
-          "ml-0.5 my-0.5 border-0 p-2 focus:outline-none resize-none font-mono text-xs bg-transparent dark:text-gray-300",
+          "ml-0.5 my-0.5 border-0 p-2 focus:outline-none resize-none font-mono text-xs bg-transparent dark:text-gray-300 scroller",
           invalidInput
             ? "focus:ring-2 ring-2 ring-red-400 focus:ring-red-400"
             : "focus:ring-0"
         )}
         style={{
           width: "calc(100% - 4px)",
-          height: "calc(100% - 6px)",
+          height: "calc(100% - 2px)",
         }}
         placeholder="Type (or Paste) here"></textarea>
     </>

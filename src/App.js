@@ -13,6 +13,8 @@ import { AppContextProvider } from "./contexts/AppContext";
 import { ModuleMapping } from "./utils/config";
 import { JsonViewerProvider } from "./contexts/JsonViewerContext";
 import { ObjectConverterProvider } from "./contexts/ObjectConverterContext";
+import DifferenceViewer from "./modules/JSONDiff/Difference";
+import { JsonDiffProvider } from "./contexts/JsonDiffContext";
 
 const router = createBrowserRouter([
   {
@@ -31,6 +33,10 @@ const router = createBrowserRouter([
         path: ModuleMapping.Converter,
         element: <JSObjectConverter />,
       },
+      {
+        path: ModuleMapping.Diff,
+        element: <DifferenceViewer />,
+      },
       // {
       //   path: "xml-json",
       //   element: <XML2JSONConverter />,
@@ -44,10 +50,12 @@ function App() {
   return (
     <AppContextProvider>
       <JsonViewerProvider>
-        <ObjectConverterProvider>
-          <RouterProvider router={router} />
-          <Toaster position="center-bottom" />
-        </ObjectConverterProvider>
+        <JsonDiffProvider>
+          <ObjectConverterProvider>
+            <RouterProvider router={router} />
+            <Toaster position="center-bottom" />
+          </ObjectConverterProvider>
+        </JsonDiffProvider>
       </JsonViewerProvider>
     </AppContextProvider>
   );

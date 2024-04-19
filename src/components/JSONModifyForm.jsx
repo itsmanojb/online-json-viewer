@@ -80,7 +80,9 @@ export default function JSONModifyForm() {
   return (
     <div className="mt-2">
       <fieldset className="border px-4 py-6 rounded border-gray-300 dark:border-gray-700 mb-4 text-neutral-600 dark:text-gray-400">
-        <legend className="text-xs ">Sort properties</legend>
+        <legend className="text-xs text-gray-400 dark:text-gray-500">
+          Sort properties
+        </legend>
         <div className="flex gap-x-4">
           <label
             htmlFor="noSort"

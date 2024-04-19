@@ -14,7 +14,8 @@ export default function JSONOutput(props) {
           spellCheck="false"
           className={classNames(
             "w-full h-full border-0 p-2 focus:outline-none focus:ring-0 resize-none font-mono text-xs cursor-text",
-            "bg-[#2b303b] text-white"
+            "bg-[#2b303b] text-white",
+            "scroller"
           )}
           readOnly></textarea>
       )}
