@@ -15,7 +15,7 @@ export default function DiffOutput({ diff, onNewCompare }) {
 
   return (
     <>
-      <div className="flex items-center divide-x divide-neutral-300 px-2 dark:divide-gray-600 border-b border-neutral-300 dark:border-gray-600">
+      <div className="flex sticky top-0 z-10 items-center divide-x divide-neutral-300 px-2 dark:divide-gray-600 border-b border-neutral-300 dark:border-gray-600 bg-white dark:bg-[#2b303b]">
         <button
           type="button"
           onClick={() => onNewCompare()}

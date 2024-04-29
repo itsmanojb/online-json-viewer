@@ -22,7 +22,8 @@ const Difference = () => {
   return (
     <div
       className="flex flex-col lg:flex-row overflow-hidden divide-y lg:divide-y-0 lg:divide-x dark:bg-[#2b303b]"
-      style={{ height: "calc(100vh - 39px)" }}>
+      style={{ height: "calc(100vh - 39px)" }}
+    >
       {!diff ? (
         <div className="flex-1 relative flex flex-col md:flex-row divide-x divide-neutral-300 dark:divide-gray-600">
           <div className="flex-1 pb-9 ">
@@ -33,7 +34,8 @@ const Difference = () => {
               <button
                 type="button"
                 onClick={() => compareJson()}
-                className="h-16 w-16 rounded-full bg-cyan-500 hover:bg-cyan-600 font-semibold text-xs text-white -translate-x-1/2 -translate-y-2">
+                className="h-16 w-16 rounded-full bg-cyan-500 hover:bg-cyan-600 font-semibold text-xs text-white -translate-x-1/2 -translate-y-2"
+              >
                 Compare
               </button>
             </div>
@@ -43,7 +45,7 @@ const Difference = () => {
           </div>
         </div>
       ) : (
-        <div className="flex-1 relative pb-9 min-h-[60vh] md:min-h-0">
+        <div className="flex-1 overflow-y-auto relative pb-9 min-h-[60vh] md:min-h-0">
           <DiffOutput diff={diff} onNewCompare={() => resetDiff()} />
         </div>
       )}
