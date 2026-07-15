@@ -1,6 +1,6 @@
 {
-  "name": "json-viewer",
-  "description": "An online tool for viewing JSON",
+  "name": "json-chef",
+  "description": "Utility tools for JSON files",
   "version": "1.0.0",
   "author": {
     "name": "Manoj B",

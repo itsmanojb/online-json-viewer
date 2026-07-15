@@ -1,6 +1,4 @@
-# Online JSON Viewer
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# JSONChef: JSON utility tools
 
 ![ScreenShot](/json-view.png?raw=true "")
 
