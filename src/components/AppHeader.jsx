@@ -11,7 +11,7 @@ export default function AppHeader() {
       <div className="flex items-center">
         <Link to={"/"} className="flex items-center gap-2">
           <img src={Logo} alt="logo" className="h-6 object-contain invert" />
-          <span className="font-bold hidden md:block">JSON Utilities</span>
+          <span className="font-bold hidden md:block">JSON Chef</span>
         </Link>
         <div className="ml-10 flex items-center">
           {links.map((link, i) => (
